@@ -27,13 +27,13 @@ jQuery.fn.TableCSVExport = function (options) {
     var csvData = [];
     var headerArr = [];
     var el = this;
-    var basic = options.columns.length == 0 ? true : false;
+    var basic = options.columns.length == 0;
     var columnNumbers = [];
     var columnCounter = 0;
     var insertBeforeNum = null;
     //header
     var numCols = options.header.length;
-    var tmpRow = []; // construct header avalible array
+    var tmpRow = []; // construct header available array
 
     if (numCols > 0) {
         if (basic) {
@@ -68,8 +68,8 @@ jQuery.fn.TableCSVExport = function (options) {
     row2CSV(tmpRow);
 
     // actual data
+    var trCounter = 0;
     if (basic) {
-        var trCounter = 0;
         getAvailableRows(el).each(function () {
             var tmpRow = [];
             var extraDataCounter = 0;
@@ -90,7 +90,6 @@ jQuery.fn.TableCSVExport = function (options) {
             trCounter++;
         });
     } else {
-        var trCounter = 0;
         getAvailableRows(el).each(function () {
             var tmpRow = [];
             var columnCounter = 0;
@@ -122,16 +121,15 @@ jQuery.fn.TableCSVExport = function (options) {
         }
     }
 
+    var mydata = csvData.join('\n');
     if ((options.delivery == 'popup') || (options.delivery == 'download')) {
-        var mydata = csvData.join('\n');
         return popup(mydata);
     } else {
-        var mydata = csvData.join('\n');
         return mydata;
     }
 
     function row2CSV(tmpRow) {
-        var tmp = tmpRow.join('') // to remove any blank rows
+        var tmp = tmpRow.join(''); // to remove any blank rows
         // alert(tmp);
         if (tmpRow.length > 0 && tmp != '') {
             var mystr = tmpRow.join(options.separator);
