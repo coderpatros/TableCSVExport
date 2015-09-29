@@ -24,7 +24,8 @@ jQuery.fn.TableCSVExport = function (options) {
         showHiddenRows: false,
         rowFilter: "",
         useTHead: false,
-        downloadFilename: 'export.csv'
+        downloadFilename: 'export.csv',
+        formatData: null
     },
     options);
 
@@ -141,6 +142,9 @@ jQuery.fn.TableCSVExport = function (options) {
         }
     }
     function formatData(input) {
+        if (options.formatData) {
+            input = options.formatData(input);
+        }
         // mask " with "
         var regexp = new RegExp(/["]/g); //"
         var output = input.replace(regexp, '""');

@@ -58,6 +58,10 @@ Example: [code] jQuery('#table-id').TableCSVExport({header:['Name','Mon','Tue','
 
 This will export only the 'Name' and 'Mon' columns as CSV data.
 
+formatData (Default: null)
+
+Provide a callback for preprocessing of table cell content. Use this to create special handling of cell content. A couple of example callbacks are provided in the examples sub-directory.
+
 -- WARNING --
 
 When using the columns option to only export certain columns, you must also set the header array and the columns array must be a subset of the header array.
