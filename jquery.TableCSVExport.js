@@ -21,6 +21,7 @@ jQuery.fn.TableCSVExport = function (options) {
         emptyValue: '',
         showHiddenRows: false,
         rowFilter: ""
+        downloadFilename: 'export.csv'
     },
     options);
 
@@ -152,7 +153,13 @@ jQuery.fn.TableCSVExport = function (options) {
     }
     function popup(data) {
         if (options.delivery == 'download') {
-            window.location = 'data:text/csv;charset=utf8,' + encodeURIComponent(data);
+            var urlData = 'data:text/csv;charset=utf8,' + encodeURIComponent(data);
+            var $aLink = $('<a>' + options.downloadFilename + '</a>');
+            $aLink.prop('download', options.downloadFilename);
+            $aLink.prop('href', urlData);
+            $aLink.appendTo($('html body'));
+            $aLink[0].click();
+            $aLink.remove();
             return true;
         } else {
             var generator = window.open('', 'csv', 'height=400,width=600');

@@ -33,7 +33,10 @@ The manner in which to return the CSV data file. Options are:
 'popup' - opens a new window and displays the CSV data in a box where it can be copied from.
 'value' - returns the CSV data as a single long string
 'download' - triggers a download of a file containing the CSV data
- 
+
+downloadFilename (Default: 'export.csv')
+
+Attempts to set a filename when delivery method is 'download'. May not work in all browsers (IE, I'm looking at you)
 
 header (Default: [])
 
