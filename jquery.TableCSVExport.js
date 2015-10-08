@@ -25,7 +25,8 @@ jQuery.fn.TableCSVExport = function (options) {
         rowFilter: "",
         useTHead: false,
         downloadFilename: 'export.csv',
-        formatData: null
+        formatData: null,
+        appendEmptyLine: false
     },
     options);
 
@@ -127,6 +128,9 @@ jQuery.fn.TableCSVExport = function (options) {
     }
 
     var mydata = csvData.join('\n');
+    if (options.appendEmptyLine) {
+        mydata += '\n';
+    }
     if ((options.delivery == 'popup') || (options.delivery == 'download')) {
         return popup(mydata);
     } else {
